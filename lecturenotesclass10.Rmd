@@ -1,7 +1,7 @@
 ---
 title: "Introduction to probability"
-author: ""
-date: ""
+author: "Connor Murphy"
+date: "2-22-2021"
 output: html_document
 editor_options: 
   chunk_output_type: console
@@ -49,17 +49,22 @@ xtabs(~ Treatment + Improved, data = Arthritis) %>%
 ```
 
 - How many patients were enrolled in the clinical trial?
+  84
 
-- What is the probability a randomly selected patient received the placebo?
+- What is the probability a randomly selected patient received the placebo? 
+  43/84
 
 - What is the probability a randomly selected patient received the placebo
   and had a marked improvement?
+  7/84
   
 - What is the probability a randomly selected patient received the placebo
   and the treatment?
+  0/84
   
 - What is the probability a randomly selected patient had some improvement or
   was on the treatment?
+  48/84
 
 ## Using computer simulations to calculate probabilities
 
@@ -101,6 +106,9 @@ prop.table(counts)
 ```
 
 How close is this value to the "true" probability?
+
+Very close; the theoretical probabilities of 0.50 (red), 0.375 (blue), and 0.125
+(white) are closely approximated by 0.4956, 0.3795, and 0.1249
 
 **To summarize our process:**
 
@@ -158,11 +166,18 @@ Perform a simulation to compute this empirical probability.
 Write down your guess to the answer before you calculate it.
 
 ```{r simulate_rolls}
-
+roll_results <- tibble(
+  die_1 = replicate(n = 10000, expr = sample(1:6), size = 1),
+  die_1 = replicate(n = 10000, expr = sample(1:6), size = 1)
+)
 ```
 
 ```{r identify_events}
+roll_results < - roll_results %>%
+  mutate(event_1 = die_1 ^ die_2 = mean(event_1),
+         event_2 = abs(die_1 - die_2) == 4)
 
+roll_results
 ```
 
 ```{r summarize_rolls}
